@@ -70,8 +70,8 @@
 }
 
 .signin-form {
-    margin-left: 20%;
-    margin-right: auto;
+    /* margin-left: 20%;
+    margin-right: auto; */
     padding-top: 66px;
 
 }
@@ -142,7 +142,9 @@
 
 .finish-btn{/* 회원가입 버튼 */
     /* position */
-    position: absolute; left: 40%;
+    position: absolute; 
+    /* margin: 0 auto; */
+    left: 43%;
     margin-top: 50px;
     font-size: 30px;
     color: rgb(138, 138, 138);

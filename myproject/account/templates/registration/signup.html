@@ -14,14 +14,16 @@
     <div class="container">
         <div class="header">
             <!-- 헤더 부분 : 로고, 콜라보 이미지, 회원가입 프로세스 이미지 -->
-            <a href=""><img src="/media/images/logo.png" class="logo"></a>
-            <img src="/media/images/lotte_dbdb.png" alt="롯데 X두부두부" id="team-introduction">
+            <a href="{% url 'mainpage' %}">
+                <img src="/media/images/logo.png" class="logo">
+            </a>
+            <img src="{% static 'img/lotte_dbdb.png' %}" alt="롯데 X두부두부" id="team-introduction">
         </div>
 
         <div class="process">
             <div id="signin">회원가입<div class="dot--medium"></div>
             </div>
-            <img src="/media/images/signin-process-02.png" alt="signin-process-02" class="signin-process">
+            <img src="{% static 'img/signin-process-02.png' %}" alt="signin-process-02" class="signin-process">
         </div>
         <div class="sub-text">정보 입력</div>
         <div>

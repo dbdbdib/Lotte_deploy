@@ -82,6 +82,7 @@
 .user-input-area {
     /* position */
     line-height: 100%;
+    margin-bottom: 20px;
 }
 
 .user-input-area:first-child {

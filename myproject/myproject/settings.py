@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from myproject import my_settings
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,9 +26,7 @@ SECRET_KEY = 'gsqpxd&(#*8++u(=ha@gd+^z7ae$onm9m(=l$($a(nc4c)+aqd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ['18.208.184.152']
 # Application definition
 
 INSTALLED_APPS = [
@@ -122,15 +121,15 @@ USE_TZ = True
 
 # static 경로 설정
 # STATIC_URL = '/static/' # 각 static 파일에 대한 URL
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') # 업로드된 파일 저장 디렉토리 경로
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 업로드된 파일 저장 디렉토리 경로
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
 STATIC_URL = '/static/'
 
 # 미디어 파일 경로 설정
-MEDIA_URL = '/media/' # 각 media 파일에 대한 URL
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 업로드된 파일 저장 디렉토리 경로
+MEDIA_URL = '/media/'  # 각 media 파일에 대한 URL
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 업로드된 파일 저장 디렉토리 경로
 
 # AbstractUser 상속 시 필수
 AUTH_USER_MODEL = "account.User"
@@ -143,7 +142,6 @@ LOGOUT_REDIRECT_URL = '/'
 PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 # 이메일 관련 설정
-from myproject import my_settings
 EMAIL_BACKEND = my_settings.EMAIL['EMAIL_BACKEND']
 EMAIL_USE_TLS = my_settings.EMAIL['EMAIL_USE_TLS']
 EMAIL_PORT = my_settings.EMAIL['EMAIL_PORT']

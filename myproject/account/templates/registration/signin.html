@@ -13,19 +13,22 @@
     <div class="container">
 
         <div class=" header">
-            <a href=""><img src="/media/images/logo.png" class="logo"></a>
-            <div class = "collaboration">
-                <img src="/media/images/lotte_dbdb.png" alt="롯데 X두부두부" id="team-introduction">
+            <a href="{% url 'mainpage' %}">
+                <img src="/media/images/logo.png" class="logo">
+            </a>
+            <div class="collaboration">
+                <img src="{% static 'img/lotte_dbdb.png' %}" alt="롯데 X두부두부" id="team-introduction">
             </div>
         </div>
 
         <!-- 로그인 form -->
         <div class="login-form">
-            <div id="login">로그인<div class="dot--small"></div></div>
+            <div id="login">로그인<div class="dot--small"></div>
+            </div>
             <form method="post" action="{% url 'signin' %}">
                 {% csrf_token %}
 
-                
+
                 <div class="user-input-area">
                     <!-- 아이디 입력 -->
                     <input type="text" name="username" id="id" autocomplete="off" size="400" placeholder="ID" required>
@@ -33,7 +36,8 @@
                 </div>
                 <div class="user-input-area">
                     <!-- 패스워드 입력 -->
-                    <input type="password" name="password" id="pw" autocomplete="off" size="25" placeholder="PW" required>
+                    <input type="password" name="password" id="pw" autocomplete="off" size="25" placeholder="PW"
+                        required>
                     <label for="pw"></label>
                 </div>
 
