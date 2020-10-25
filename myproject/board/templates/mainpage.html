@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="{% url 'mainpage' %}">
+
+                <img src="/media/images/logo.png" class="logo">
+            </a>
+            <div class="user-interaction-wrap">
+
+                {%if user.is_authenticated%}
+                {{user.nickname}} 님 반갑습니다.
+                <a href="{% url 'mypost' user.pk %}">마이페이지</a>
+                <a href="{% url 'logout' %}">로그아웃</a>
+                {%else%}
+                <div class="login-in"><a href="{% url 'signin' %}">로그인</a></div>
+                <div class="sign-in"><a href="{% url 'select_division' %}">회원 가입</a></div>
+                {%endif%}
+
+            </div>
+        </div>
+
+        <!-- 요기서 안에 글씨랑 로고 넣으려고 하면 계속 앞에 친구가 붕뜨면서 이쁘게 안나옴 -->
+        <div class="content-box">
+
+            {% for o in outer %}
+            <a href="{% url 'lotte_outer' o.pk %}">
+                <div class="select-box" id="select--food">
+                    {% if forloop.counter == 1 %}
+                    <div class="logo-box"><img src="{% static 'img/1.png' %}" alt="logo" class="business-logo"></div>
+                    {% elif forloop.counter == 2 %}
+                    <div class="logo-box"><img src="{% static 'img/2.png' %}" alt="logo" class="business-logo">
+                    </div>
+                    {% elif forloop.counter == 3 %}
+                    <div class="logo-box"><img src="{% static 'img/3.png' %}" alt="logo" class="business-logo">
+                    </div>
+                    {% else %}
+                    <div class="logo-box"><img src="{% static 'img/4.png' %}" alt="logo" class="business-logo">
+                    </div>
+                    {% endif %}
+                    <div class="business-name">
+                        {{o}}
+                    </div>
+                </div>
+            </a>
+
+            {% endfor %}
+        </div>
+    </div>
+</body>
+<footer>
+    <div id="footer-nav"></div>
+    <div id="footer-info">
+        <div class="footer-info-text">
+            Copyright © DOOBOO All Rights reserved.
+        </div>
+    </div>
+</footer>
+
+</html>

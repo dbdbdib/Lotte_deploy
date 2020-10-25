@@ -1,0 +1,14 @@
+*.pyc
+*~
+__pycache__
+myvenv
+dbdbvenv
+FETCH_HEAD
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+/static
+.DS_Store
+myproject/myproject/my_settings.py
+**/media/**
+!**/media/images/

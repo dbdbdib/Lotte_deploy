@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회사별 게시판</title>
+    <link rel="stylesheet" href="{% static 'css/post-list.css' %}">
+
+</head>
+
+
+<body>
+    {% comment %}
+    {% if user.is_authenticated %}
+    {{user.nickname}} 님
+
+    <a href="{% url 'mypage' user.pk %}">마이페이지</a>
+    <a href="{% url 'logout' %}">로그아웃</a>
+    {%else%}
+    <a href="{% url 'signin' %}">로그인</a>
+    <a href="{% url 'select_division' %}">회원가입</a>
+    {% endif %}
+
+    <div class="cnt_post">{{company_post|length}}개의 게시글</div>
+    <a class="write-btn" href="{% url 'create' company_type.pk %}"> 글쓰기 </a><br>
+
+
+    {% endcomment %}
+
+
+    <div class="container">
+        <div id="header">
+            <a href="{% url 'mainpage' %}">
+                <img src="{% static 'img/logo.png' %}" class="logo">
+            </a>
+            <span class="my_page"><a href="{% url 'mypost' user.pk %}">마이페이지</a></span>
+        </div>
+
+        <div id="layout">
+            <div id="business-field">{{specific_company_type}}<div class="dot--medium"></div>
+
+
+            </div>
+            <div class="post-container">
+                <!--이거 간격 같게 어케 하나요...??-->
+                <div id="post-list__head">
+                    <div id="post-writer__head" class="post-writer head">닉네임</div>
+                    <div id="post-title__head" class="post-title head">제목</div>
+                    <div id="post-date__head" class="post-date head">게시 날짜</div>
+                    <div id="post-views__head" class="post-views head">조회수</div>
+                    <div id="post-scrap__head" class="post-scrap head">스크랩</div>
+                    <div id="post-comment__head" class="post-comment head">댓글</div>
+                </div>
+
+                <div id="post-list">
+                    {% for one_post in company_post %}
+
+                    <a href="{% url 'detail' specific_company_type.pk one_post.id %}">
+                        <div class="post-box">
+                            <div class="post" id="post1">
+                                <div class="post-writer"> {{one_post.author.nickname}}
+                                </div>
+                                <div class="post-title"> {{one_post}}
+                                </div>
+                                <div class="post-date">{{one_post.create_at|date:"Y-m-d"}}</div>
+
+                                <div class="post-views">10000</div>
+                                <div class="post-scrap">30</div>
+                                <div class="post-comment">5</div>
+                            </div>
+                        </div>
+                    </a>
+                    {%endfor%}
+                </div>
+                <a class="write-btn" href="{% url 'create' specific_company_type.pk %}">
+                    <div class="btn-wrap">
+                        <button class="btn-create">게시글 작성</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<footer>
+    <div id="footer-nav"></div>
+    <div id="footer-info">
+        <div class="footer-info-text">
+            Copyright © DOOBOO All Rights reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+
+
+    const a = "{{company_type|length}}";
+    // console.log(a)
+
+    // array2 = "{{company_type}}"
+    // for (i = 0; i < array2.length; i++) {
+    //     console.log(array2[i])
+    // }
+    function change(i) {
+        var button = document.getElementById(i);
+        button.style.background = 'red';
+    }
+
+
+    // for (var i = 0; i < a; ++i) {
+    //     button1 = document.getElementsByName(i);
+    // }
+
+    // var button1 = document.getElementById('company-' + i);
+
+    // button1.addEventListener("click", function () {
+    //     button1.style.backgroundColor = "red";
+    // });
+
+
+</script>
+
+</html>
