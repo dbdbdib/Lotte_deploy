@@ -6,112 +6,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/update_mypage.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/update_mypage.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/마이페이지.css' %}">
+    <link rel="stylesheet" href="{% static 'css/마이페이지-좌측메뉴.css' %}">
+    <link rel="stylesheet" href="{% static 'css/마이페이지-정보수정.css' %}">
 </head>
 
 <body>
-    <div class="background">
+    <div class="container">
         <div class="header">
-            <a href="{% url 'mainpage' %}">
-                <img src="/media/images/logo.png" class="logo">
-            </a>
+            <a href="{% url 'mainpage' %}"> <img src="{% static 'img/logo.png' %}" class="logo"></a>
+
             <a href="{% url 'logout' %}">
-                <div class="logout-btn">
+                <span id='logout'>
                     로그아웃
-                </div>
+                </span>
             </a>
         </div>
 
         <!-- 로그인한 사람의 마이페이지가 맞는 경우 -->
         {%if user.pk is pk %}
-
-        <div class="board-wrap">
-            <div class="comp-wrap">
-                <div class="comp-list">
-                    <div class="comp-box">
-                        <div class="comp-name" id="name2">
-                            <a href="{% url 'mypost' user.pk %}">내가쓴 글</a>
-                        </div>
-                    </div>
-
-                    <div class="comp-box">
-                        <div class="comp-name" id="name3">
-                            스크랩한 글
-                        </div>
-                    </div>
-
-                    <!-- 요 부분 예쁘게 수정해야돼요 -->
-                    <div class="comp-box">
-                        <div class="comp-name" id="name3">
-                            <a href="{% url 'update_mypage' user.pk %}">정보수정</a>
-                        </div>
-                    </div>
-                </div>
+        <div id="layout">
+            <div id="my-page">마이페이지<div class="dot--medium"></div>
             </div>
+            <div class="menu-list">
+                <a href="{% url 'mypost' user.pk %}">
+                    <div class="menu-box">
+                        <div class="menu-name">내가 쓴 글</div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="menu-box">
+                        <div class="menu-name">스크랩한 글</div>
+                    </div>
+                </a>
+                <a href="{% url 'update_mypage' user.pk %}">
+                    <div class="menu-box" id="current-menu">
+                        <div class="menu-name">정보 수정</div>
+                    </div>
+                </a>
+            </div>
+
 
             <div class="post-wrap">
                 <div class="post-box-wrap">
-                    <div class="change-title">
-                        정보 수정
-                    </div>
-                    <hr>
-
-                    <!--  이 부분 예쁘게 같이 보여주기 -->
-                    이메일 : {{user.email}}
-                    <br/>
-                    가입 구분 : {{user.get_division_display}}
-                    <br/>
-                    {%if user.division is 1%}
-                    계열 : {{user.get_line_display}}
-                    {%endif%}
-                    <br/>
-
-
-                    닉네임 : 
-                    <!-- 닉넴 수정 부분 -->
-                    <form id='' class="" action="{% url 'update_mypage' user.pk %}" enctype="multipart/form-data"
-                        method="post">
+                    <div id="change-info">정보 수정</div>
+                    <hr class="horizontal-line">
+                    <form class="change-info-form" action="{% url 'update_mypage' user.pk %}"
+                        enctype="multipart/form-data" method="post">
                         {% csrf_token %}
 
-                        <input type="text" name="nickname_form-nickname" maxlength="20" required
-                            id="id_nickname_form-nickname" value="{{user.nickname}}">
 
-                        <input type="submit" name="{{ nickname_form.prefix }}-submit" value="닉네임 수정" />
+                        <div class="input-box" id="name-box">
+                            <div class="input-menu" id="name">이메일</div>
+                            <input type="text" class="input-text" id="modify-name" value="{{user.email}}" disabled>
+                        </div>
+
+                        <div class="input-box" id="nickname-box">
+                            <div class="input-menu" id="nickname">닉네임</div>
+                            <input type="text" class="input-text" id="modify-nickname" value="{{user.nickname}}">
+                            <input type="submit" class="input-btn" id="duplicattion-check-btn"
+                                name="{{ nickname_form.prefix }}-submit" value="중복확인" onclick="alert('중복확인')">
+                        </div>
+
+                        <form id='' class="" action="{% url 'update_mypage' user.pk %}" enctype="multipart/form-data"
+                            method="post">
+                            {% csrf_token %}
+
+                            <div class="input-box" id="password-box">
+                                <div class="input-menu" id="pass">비밀번호</div>
+                                <input type="password" class="input-text" id="modify-password" placeholder="현재 비밀번호">
+                            </div>
+
+                            <div class="input-box" id="password-check-box">
+                                <div class="input-menu" id="pass-recheck">비밀번호 확인</div>
+                                <input type="password" class="input-text" id="modify-password-check"
+                                    placeholder="비밀번호 확인">
+                            </div>
+                            <input type="submit" class="input-btn" id="btn-modify-finish"
+                                name="{{ password_form.prefix }}-submit" value="비밀번호 수정" />
+
+                        </form>
+
+
+                        <!-- <button id="btn-modify-finish">수정 완료</button> -->
                     </form>
-
-                    <br>
-                    <br>
-
-                    <!-- 사진 수정 부분 -->
-                    프로필 사진 :  <img src="{{user.picture.url}}" width="250px" height="250px">
-                    <form id='' class="" action="{% url 'update_mypage' user.pk %}" enctype="multipart/form-data"
-                        method="post">
-                        {% csrf_token %}
-                        <input type="file" name="picture_form-picture" required id="id_picture_form-picture">
-
-                        <input type="submit" name="{{ picture_form.prefix }}-submit" value="프로필사진 수정" />
-                    </form>
-
-                    <br>
-                    <br>
-                    비밀번호 : 
-
-                    <!-- 비번 수정 부분 -->
-                    <form id='' class="" action="{% url 'update_mypage' user.pk %}" enctype="multipart/form-data"
-                        method="post">
-                        {% csrf_token %}
-                        <input type="pasword" name="password_form-old_password" autofocus="" required
-                            id="id_password_form-old_password" placeholder="현재 비밀번호">
-                        <input type="pasword" name="password_form-new_password1" autofocus="" required
-                            id="id_password_form-new_password1" placeholder="바꿀 비밀번호">
-                        <input type="password" name="password_form-new_password2" autofocus="" required
-                            id="id_password_form-new_password2" placeholder="비밀번호 확인">
-
-                        <input type="submit" name="{{ password_form.prefix }}-submit" value="비밀번호 수정" />
-                    </form>
-
-
-                    <!-- 에러창 뜰 부분 (지금은 메시지로 표시) -->
+                    {% comment %}
                     {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
@@ -119,30 +99,29 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
-
+                    {% endcomment %}
                 </div>
             </div>
         </div>
-
-        <!-- 다른 사람 마이페이지일 경우 -->
-        {% else %}
-
-        에러에러
-
-        {% endif %}
-
     </div>
 
-    <div id="footer">
-        <div id="footer-nav">
-            <div class="container"></div>
-        </div>
-        <div id="footer-info">
-            <div class="footer-info-text">
-                Copyright © DOOBOO All Rights reserved.
-            </div>
-        </div>
-    </div>
+
+    <!-- 다른 사람 마이페이지일 경우 -->
+    {% else %}
+
+    에러에러
+
+    {% endif %}
+
+
+
 </body>
+<footer>
+    <div id="footer-nav"></div>
+    <div id="footer-info">
+        <div class="footer-info-text">
+            Copyright © DOOBOO All Rights reserved.
+        </div>
+    </div>
 
 </html>
