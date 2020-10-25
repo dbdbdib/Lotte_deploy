@@ -66,6 +66,7 @@
             </form>
 
             <!-- 중복확인 기능 및 비밀번호 맞는지 확인기능입니당 지금은 메시지로 돼있어여 -->
+            {% comment %}
             {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -73,6 +74,7 @@
                 {% endfor %}
             </ul>
             {% endif %}
+            {% endcomment %}
         </div>
 </body>
 
