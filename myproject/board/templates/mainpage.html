@@ -32,8 +32,9 @@
 
         <!-- 요기서 안에 글씨랑 로고 넣으려고 하면 계속 앞에 친구가 붕뜨면서 이쁘게 안나옴 -->
         <div class="content-box">
-
             {% for o in outer %}
+
+            {% if user.is_authenticated %}
             <a href="{% url 'lotte_outer' o.pk %}">
                 <div class="select-box" id="select--food">
                     {% if forloop.counter == 1 %}
@@ -53,6 +54,27 @@
                     </div>
                 </div>
             </a>
+            {% else %}
+            <a href="{% url 'signin' %}">
+                <div class="select-box" id="select--food">
+                    {% if forloop.counter == 1 %}
+                    <div class="logo-box"><img src="{% static 'img/1.png' %}" alt="logo" class="business-logo"></div>
+                    {% elif forloop.counter == 2 %}
+                    <div class="logo-box"><img src="{% static 'img/2.png' %}" alt="logo" class="business-logo">
+                    </div>
+                    {% elif forloop.counter == 3 %}
+                    <div class="logo-box"><img src="{% static 'img/3.png' %}" alt="logo" class="business-logo">
+                    </div>
+                    {% else %}
+                    <div class="logo-box"><img src="{% static 'img/4.png' %}" alt="logo" class="business-logo">
+                    </div>
+                    {% endif %}
+                    <div class="business-name">
+                        {{o}}
+                    </div>
+                </div>
+            </a>
+            {% endif %}
 
             {% endfor %}
         </div>
