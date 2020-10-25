@@ -14,7 +14,7 @@
     <div class="container">
         <div id="header">
             <a href="{% url 'mainpage' %}">
-                <img src="/media/images/logo.png" class="logo">
+                <img src="{% static 'img/logo.png' %}" class="logo">
             </a>
             <span id="logout"><a href="{% url 'logout' %}">로그아웃</a></span>
         </div>
