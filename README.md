@@ -1,6 +1,19 @@
 # 🥇 두부두부 LOTTE PROJECT
 : 롯데 직원 - 롯데 취준생 소통 창구
 
+# ABOUT DEV 👨‍💻
+
+## teammates 🦁
+
+|teammate|role|
+|---|---|
+|`gil`|front/back-end & deploy|
+|`lim`|backend|
+|`geum`|backend|
+|`eunjin`|backend|
+|`jongmyung`|frontend & managing|
+|`umin`|design|
+
 ## 🔨 개발 규칙
 ### 🔒 Django
 : 가상 환경 ```.gitignore```로 두고 각자 따로 사용하기
