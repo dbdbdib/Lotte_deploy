@@ -159,7 +159,6 @@ def detail(request, pk, post_id):
     context = dict()
 
     detail_post = Post.objects.get(id=post_id)
-    company_chk = Company.objects.get(pk=pk)
 
     specific_company_type = Company.objects.get(pk=pk)
     context['specific_company_type'] = specific_company_type
@@ -168,6 +167,8 @@ def detail(request, pk, post_id):
     context['comment_form'] = CommentForms()
     context['comment_all'] = Comment.objects.filter(
         post=Post.objects.get(id=post_id))  # 얘가 listview역할
+
+    company_chk = Company.objects.get(pk=pk)
     context['company_chk'] = company_chk
 
     return render(request, 'detail.html', context)

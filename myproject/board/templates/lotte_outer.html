@@ -53,9 +53,11 @@
                 <div id="post-list">
 
                     {% for one_post in all_post %}
-                    {% if outer.id == 5 %}
+                    {% if outer.id == 5 and one_post.boards_number in food_company_post %}
+                    {%comment%}
                     {% if one_post.boards_number in food_company_post %}
-                    <a href=" {% url 'detail' specific_company_type.pk one_post.id %}">
+                    {%endcomment%}
+                    <a href=" {% url 'detail' one_post.boards_number.pk one_post.id %}">
                         <div class="post-box">
                             <div class="post" id="post1">
                                 <div class="post-writer"> {{one_post.author.nickname}}
@@ -70,10 +72,8 @@
                             </div>
                         </div>
                     </a>
-                    {% endif %}
 
-                    {% elif outer.id == 6 %}
-                    {% if one_post.boards_number in retail_company_post %}
+                    {% elif outer.id == 6 and one_post.boards_number in retail_company_post %}
                     <a href=" {% url 'detail' specific_company_type.pk one_post.id %}">
                         <div class="post-box">
                             <div class="post" id="post1">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </a>
-                    {% endif %} {% elif outer.id == 7 %} {% if one_post.boards_number in chem_company_post %} <a
+                    {% elif outer.id == 7 and one_post.boards_number in chem_company_post %} <a
                         href=" {% url 'detail' specific_company_type.pk one_post.id %}">
                         <div class="post-box">
                             <div class="post" id="post1">
@@ -104,13 +104,13 @@
                             </div>
                         </div>
                     </a>
-                    {% endif %}
 
-                    {% elif outer.id == 8 %}
-                    {% if one_post.boards_number in tour_company_post %}
+
+                    {% elif outer.id == 8 and one_post.boards_number in tour_company_post %}
                     <a href=" {% url 'detail' specific_company_type.pk one_post.id %}">
                         <div class="post-box">
                             <div class="post" id="post1">
+
                                 <div class="post-writer"> {{one_post.boards_number}}
                                 </div>
                                 <div class="post-title"> {{one_post}}
@@ -123,7 +123,9 @@
                             </div>
                         </div>
                     </a>
-                    {% endif %} {% endif %} {% endfor %} </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
                 <div class="paginator">
                     {%if food_company_post.has_previous%} <a href="?page=1">First</a>
                     <a href="?page={{food_company_post.previous_page_number}}">Previous</a>
