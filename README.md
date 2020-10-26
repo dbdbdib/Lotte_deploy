@@ -8,11 +8,11 @@
 |teammate|role|
 |---|---|
 |`gil`|front/back-end & deploy|
-|`lim`|backend|
-|`geum`|backend|
-|`eunjin`|backend|
+|`lim`|backend & 멱살|
+|`geum`|backend & mainpage|
+|`eunjin`|backend & register|
 |`jongmyung`|frontend & managing|
-|`umin`|design|
+|`umin`|frontend & design|
 
 ## 🔨 개발 규칙
 ### 🔒 Django
