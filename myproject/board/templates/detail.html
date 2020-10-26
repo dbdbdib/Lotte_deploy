@@ -15,7 +15,7 @@
         <div id="header">
             <a href="{% url 'mainpage' %}"> <img src="{% static 'img/logo.png' %}" class="logo"></a>
 
-            <span class="my_page"><a href="{% url 'mainpage' %}">마이페이지</a></span>
+            <span class="my_page"><a href="{% url 'mypost' user.pk %}">마이페이지</a></span>
         </div>
 
         <div id="layout">
@@ -62,6 +62,7 @@
                                 {%endif%}
                             </button>
                             <a href="{% url 'index' company_chk.pk %}">
+                                {{company_chk.pk}}
                                 <button class="btn">
                                     글 목록
                                 </button>

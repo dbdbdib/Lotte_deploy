@@ -65,7 +65,7 @@
                         <a href="{% url 'detail' one_post.boards_number.id one_post.id %}">
                             <div class="post-box">
                                 <div class="post" id="post1">
-                                    <div class="post-writer">{{one_post.id}}</div>
+                                    <div class="post-writer">{{one_post.author.nickname}}</div>
                                     <div class="post-title">{{one_post}}</div>
                                     <div class="post-date">{{one_post.create_at|date:"Y-m-d"}}</div>
                                     <div class="post-views">10000</div>
